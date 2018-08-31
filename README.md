@@ -10,16 +10,10 @@
 
 For a kirby3 site, this plugin (_omz13/htmlsitemap_) generates a human-facing html-based sitemap at '/sitemap'.
 
-_In the current proof-of-concept, the sitemap is a presented as a simple unordered list: it is envisioned that this will be transformed into something with more aesthetics through css._
-
-For a computer-oriented xml-based sitemp, kindly see [omz13/kirby3-xmlsitemap](https://github.com/omz13/kirby3-xmlsitemap).
-
-#### Overview
-
-- Generates an html-based sitemap as structured unordered list (`<ul>`).
+- Generates an html-based sitemap as a structured unordered list (`<ul>`).
 - Pages or their children can be excluded based in the following criteria, and in the following priority:
   - The homepage is always included.
-  - The error page is always excluded (who wants to see the error page?)
+  - The error page is always excluded; who wants to see the error page?
   - Only pages that have a status of "published" are included, i.e. those with "draft" or "unpublished" are excluded.
   - Unpublished pages can be explicitly included based on their slugname; c.f. `includeUnlistedWhenSlugIs` in _Configuration_.
   - Pages made using certain templates can be excluded; c.f. `excludePageWhenTemplateIs` in _Configuration_.
@@ -30,6 +24,14 @@ For a computer-oriented xml-based sitemp, kindly see [omz13/kirby3-xmlsitemap](h
   - The children of pages made using certain templates can be excluded; c.f. `excludeChildrenWhenTemplateIs` in _Configuration_.
   - The children of pages made using certain templates can be included as anchored links to their parent; c.f. `linkyChildrenWhenTemplateIs` in _Configuration_.
 - For debugging purposes, the generated html sitemap can include additional information as html comments; c.f. `debugqueryvalue` in _Configuration_.
+
+_In the current proof-of-concept, the sitemap is a presented as a simple unordered list: it is envisioned that this will be transformed into something with more aesthetics through css._
+
+#### Related
+
+For a computer-oriented xml-based sitemp, kindly see [omz13/kirby3-xmlsitemap](https://github.com/omz13/kirby3-xmlsitemap).
+
+For a plugin that provides the methods `issunset` and `isunderembargo`, kindly see [omz13/kirby3-suncyclepages](https://github.com/omz13/kirby3-suncyclepages).
 
 #### Caveat
 
