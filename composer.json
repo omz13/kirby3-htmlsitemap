@@ -1,6 +1,6 @@
 {
   "name": "omz13/kirby3-htmlsitemap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "kirby3 plugin to generate a html-based (user-facing) sitemap",
   "license": "MIT",
   "keywords": [

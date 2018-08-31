@@ -10,7 +10,7 @@
 
 namespace omz13;
 
-define('HTMLSITEMAP_VERSION', '0.1.0');
+define('HTMLSITEMAP_VERSION', '0.1.1');
 define('INDENTWITH', '    ');
 
 class HTMLSitemap
