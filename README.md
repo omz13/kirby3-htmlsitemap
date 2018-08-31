@@ -153,6 +153,51 @@ fields:
 
 As pages are implicitly included within a sitemap, this mechanism should only be used when you have a reason to explcitly exclude a page when it is not possible to do otherwise (c.f. `excludePageWhenTemplateIs`).
 
+### Use
+
+#### StarterKit
+
+A sample rendered `/sitemap` would look like:
+
+![pix](docs/starterkit-bare.png)
+
+And the underlying HTML is
+
+```html
+<body>
+    <ul>
+        <li id="home"><a href="https://kir.by">Home</a>
+        <li><a href="https://kir.by/projects">Projects</a>
+            <ul>
+                <li><a href="https://kir.by/projects/trees-and-stars-and-stuff">Trees and stars and stuff</a>
+                <li><a href="https://kir.by/projects/oceans-are-quite-nice">Oceans are quite nice</a>
+                <li><a href="https://kir.by/projects/glowing-in-the-dark-tent">Glowing in the dark tent</a>
+                <li><a href="https://kir.by/projects/drones">Drones</a>
+                <li><a href="https://kir.by/projects/lame-light-effects">Lame light effects</a>
+            </ul>
+        <li><a href="https://kir.by/blog">Blog</a>
+            <ul>
+                <li><a href="https://kir.by/blog/extending-kirby">Extending Kirby</a>
+                <li><a href="https://kir.by/blog/licensing-kirby">Licensing Kirby</a>
+                <li><a href="https://kir.by/blog/content-in-kirby">Content in Kirby</a>
+            </ul>
+        <li><a href="https://kir.by/shop">Shop</a>
+        <li><a href="https://kir.by/team">Team</a>
+            <ul>
+                <li><a href="https://kir.by/team#bob-meowerly">Bob Meowerly</a></li>
+                <li><a href="https://kir.by/team#brad-kitt">Brad Kitt</a></li>
+                <li><a href="https://kir.by/team#cat-winslet">Cat Winslet</a></li>
+                <li><a href="https://kir.by/team#hunter-s-tomcat">Hunter S. Tomcat</a></li>
+            </ul>
+        <li><a href="https://kir.by/one-pager">One Pager Example</a>
+        <li><a href="https://kir.by/restaurant-menu">Restaurant Menu</a>
+        <li><a href="https://kir.by/events">Events</a>
+        <li><a href="https://kir.by/testimonials">Testimonials</a>
+    </ul>
+</body>
+
+```
+
 ## Disclaimer
 
 This plugin is provided "as is" with no guarantee. Use it at your own risk and always test it yourself before using it in a production environment. If you find any issues, please [create a new issue](https://github.com/omz13/kirby3-htmlsitemap/issues/new).
