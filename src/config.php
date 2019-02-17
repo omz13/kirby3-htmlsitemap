@@ -15,16 +15,16 @@ Kirby::plugin(
     // 'excludePageWhenSlugIs' => [],
     // ],
 
-        'routes' => [
-            [
-                'pattern' => 'sitemap',
-                'action'  => function () {
-                    $dqv     = omz13\HTMLSitemap::getConfigurationForKey('debugqueryvalue');
-                    $dodebug = (isset($dqv) && $dqv == get('debug'));
+      'routes' => [
+        [
+          'pattern' => 'sitemap',
+          'action'  => function () {
+                    $dqv     = omz13\HTMLSitemap::getConfigurationForKey( 'debugqueryvalue' );
+                    $dodebug = ( isset( $dqv ) && $dqv == get( 'debug' ) );
 
-                    return new Kirby\Cms\Response(omz13\htmlsitemap::getSitemap(kirby()->site()->pages(), $dodebug), 'text/html', 200, ['X-OMZ13' => 'htmlsitemap']);
-                },
-            ],
+                    return new Kirby\Cms\Response( omz13\HTMLSitemap::getSitemap( kirby()->site()->pages(), $dodebug ), 'text/html', 200, ['X-OMZ13' => 'htmlsitemap'] );
+          },
+        ],
 
             // [
             // 'pattern' => 'sitemap.css',
@@ -33,7 +33,7 @@ Kirby::plugin(
             // }
             // ]
 
-        ],
+      ],
     ]
 );
 

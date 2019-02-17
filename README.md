@@ -62,28 +62,13 @@ For 1.0, the non-binding list of planned features and implementation notes are:
 
 ### Installation
 
-#### via composer
+Pick one of the following per your epistemological model:
 
-If your kirby3-based site is managed using-composer, simply invoke `composer require omz13/kirby3-htmlsitemap`, or add `omz13/kirby3-htmlsitemap` to the "require" component of your site's `composer.json` as necessary, e.g. to be on the bleeding-edge:
+- `composer require --no-dev omz13/kirby3-htmlsitemap`; the plugin will automagically appear in `site/plugins`.
+- Download a zip of the latest release - [master.zip](https://github.com/omz13/kirby3-htmlsitemap/archive/master.zip) - and copy the contents to your `site/plugins/kirby3-htmlsitemap`.
+- `git submodule add https://github.com/omz13/kirby3-htmlsitemap.git site/plugins/kirby3-htmlsitemap`.
 
-```yaml
-"require": {
-  ...
-  "omz13/kirby3-htmlsitemap": "dev-master as 1.0.0",
-  ...
-}
-```
-#### via git
-
-Clone github.com/omz13/kirby3-xmlsitemap into your `site/plugins` and then in `site/plugins/kirby3-htmlsitemap` invoke ``composer update --no-dev`` to generate the `vendor` folder and the magic within.
-
-```sh
-$ git clone github.com/omz13/kirby3-htmlsitemap site/plugins/kirby3-htmlsitemap
-$ cd site/plugins/kirby3-htmlsitemap
-$ composer update --no-dev
-```
-
-If your project itself is under git, then you need to add the plugin as a submodule and possibly automate the composer update; it is assumed if you are doing this that you know what to do.
+For the record: installation by composer is cool; supporting installation by zip and submodule was an absolute pain, especially as I am an installation by composer person, so do feel guilted into getting me Coffee, Beer, etc., because this is for _your_ benefit and _not mine_ (and yes, I would have have preferred to spend my time somewhere warm and sunny instead of being hunched over a keyboard while the snow falls outside and the thermometer shows no inclination to get above 0C).
 
 ### Configuration
 

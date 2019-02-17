@@ -1,0 +1,15 @@
+parameters:
+	checkAlwaysTrueCheckTypeFunctionCall: false
+	checkAlwaysTrueInstanceof: false
+	polluteCatchScopeWithTryAssignments: false
+	polluteScopeWithLoopInitialAssignments: true
+	earlyTerminatingMethodCalls: []
+	universalObjectCratesClasses: []
+	ignoreErrors:
+		- '#Call to function in_array\(\) requires parameter \#[\d]+ to be true.#'
+		- '#Property [a-z0-9]+\\[a-zA-Z]+::\$[a-zA-Z]+ has no typehint specified.#'
+		- '#Cannot call method code\(\) on Kirby\\Cms\\Language|null.#'
+	tmpDir: %rootDir%/tmp
+	level: 5
+includes:
+	- vendor/phpstan/phpstan-strict-rules/rules.neon

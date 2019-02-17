@@ -1,44 +1,86 @@
-.PHONY: zip build tools
+.PHONY: tools build sanity release prerelease
 
-PHPRMT := $(shell command -v RMT 2> /dev/null)
-PHPCS := $(shell command -v phpcs 2> /dev/null)
-PHPCBF := $(shell command -v phpcbf 2> /dev/null)
-PHPMESS := $(shell command -v phpmd 2> /dev/null)
-PHPLOC := $(shell command -v phploc 2> /dev/null)
+THIS_FILE := $(lastword $(MAKEFILE_LIST))
+
+# the default is to do the 'sanity' checks, i.e. lint, style, mess, and stan.
+
+default: tools
+	composer lint
+	composer style
+	composer mess
+	composer stan
+
+# make tools checks that the necessary command line tools are available
 
 tools:
-ifndef PHPRMT
-  $(error "php release management tool (rmt) is not available; try composer global require liip/rmt")
+	@echo $@  # print target name
+	@echo Checking toolchain
+
+ifeq (,$(wildcard ${HOME}/.composer/vendor/liip/rmt/command.php))
+	$(error liip/rmt missing!)
 endif
 
-ifndef PHPCS
-  $(error "php code sniffer (phpcs) is not available; try composer global require squizlabs/php_codesniffer")
+ifeq (,$(wildcard ${CURDIR}/vendor/bin/parallel-lint))
+	$(error "parallel lint (jakub-onderka/php-parallel-lint) is not available; try composer install!")
+else
+	@echo We have parallel lint
 endif
 
-ifndef PHPCBF
-  $(error "php code fixer (phpcbf) is not available; try composer global require squizlabs/php_codesniffer")
+ifeq (,$(wildcard ${CURDIR}/vendor/bin/phpcs))
+	$(error "php code sniffer (squizlabs/php_codesniffer phpcs) is not available; try composer install")
+else
+	@echo We have phpcs
 endif
 
-ifndef PHPMESS
-  $(error "php mess tool (phpmd) is not available; try composer global require phpmd/phpmd")
+ifeq (,$(wildcard ${CURDIR}/vendor/bin/phpcbf))
+	$(error "php code beautifier and fixer (squizlabs/php_codesniffer phpcbf) is not available; try make install_tools")
+else
+	@echo We have code beautifier and fixer
 endif
 
-ifndef PHPLOC
-  $(error "php mess tool (phploc) is not available; try composer global require phploc/phploc")
+ifeq (,$(wildcard ${CURDIR}/vendor/bin/phpmd))
+	$(error "php mess tool (phpmd/phpmd) is not available; try composer install")
+else
+	@echo We have mess tool
 endif
-	@echo Toolchain available
+
+ifeq (,$(wildcard ${CURDIR}/vendor/bin/phpstan))
+	$(error "php static analysis tool (phpstan/phpstan) is not available; try composer install")
+else
+	@echo We have static analysis tool
+endif
+
+	@echo Toolchain is available
+
+lint: tools
+	composer run-script lint
 
 build: tools
+	composer validate
 	composer run-script build
-	phploc src/
+
+fix: tools
+	composer run-script fix
+
+style: tools
+	composer run-script style
+
+stan: tools
+	composer run-script stan
 
 sanity: tools
 	composer validate
 	composer run-script sanity
 
-zip: tools
-	composer run-script zip
+prerelease:
+	composer update
+	composer normalize
+	composer run-script sanity
+	composer install --no-dev
+	composer dumpautoload -o
 
-release: tools
+release:
 	./RMT release
-	composer run-script zip
+
+postelease: tools
+	composer install

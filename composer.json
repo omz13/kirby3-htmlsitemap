@@ -1,69 +1,69 @@
 {
   "name": "omz13/kirby3-htmlsitemap",
-  "version": "0.1.1",
+  "type": "kirby-plugin",
   "description": "kirby3 plugin to generate a html-based (user-facing) sitemap",
-  "license": "MIT",
   "keywords": [
     "kirby3",
     "plugin",
     "sitemap"
   ],
-  "autoload": {
-    "files": [
-      "src/config.php"
-    ],
-    "psr-4": {
-      "omz13\\": "src/"
+  "version": "0.1.1",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "David Somers",
+      "email": "dsomers@omz13.com",
+      "homepage": "https://meldingstuff.com",
+      "role": "Developer"
     }
-  },
-  "authors": [{
-    "name": "David Somers",
-    "email": "dsomers@omz13.com",
-    "homepage": "https://meldingstuff.com",
-    "role": "Developer"
-  }],
-  "repositories": [{
-    "type": "vcs",
-    "url": "https://github.com/k-next/kirby"
-  }],
+  ],
   "require": {
     "php": ">=7.1",
-    "getkirby/cms": "dev-master as 3.0.0"
+    "getkirby/composer-installer": "^1.1"
   },
+  "require-dev": {
+    "getkirby/cms": "^3.0.1",
+    "jakub-onderka/php-parallel-lint": "^1.0",
+    "localheinz/composer-normalize": "^1.0.0",
+    "omz13/omz13-coding-standard": "dev-master",
+    "phpcompatibility/php-compatibility": "^8.2",
+    "phpmd/phpmd": "^2.6",
+    "phpstan/phpstan": "^0.10.3",
+    "phpstan/phpstan-strict-rules": "^0.10.1",
+    "roave/security-advisories": "dev-master"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "omz13\\": "src/"
+    },
+    "files": [
+      "src/config.php"
+    ]
+  },
+  "minimum-stability": "beta",
   "scripts": {
-    "style": "phpcs --standard=./ruleset.xml ./src/*",
-    "mess" : "phpmd ./src text codesize,controversial,design,unusedcode",
-    "sanity": [
-      "@style",
-      "@mess"
-    ],
-    "fix": "phpcbf --standard=./ruleset.xml ./src/*",
     "build": [
       "@sanity",
       "composer dumpautoload -o"
     ],
-    "zip": [
-      "composer remove getkirby/cms",
-      "composer dumpautoload -o",
-      "composer archive --format=zip --dir=dist",
-      "composer require getkirby/cms:'dev-master as 3.0.0'",
-      "composer dumpautoload -o"
-    ]
-  },
-  "archive": {
-    "exclude": [
-      ".*",
-      "makefile",
-      "*.xml",
-      "!/vendor/*",
-      "/vendor/*/*/.*",
-      "/vendor/*/*/docs/*",
-      "/vendor/*/*/example/*",
-      "/vendor/*/*/examples/*",
-      "/vendor/*/*/test/*",
-      "/vendor/*/*/tests/*",
-      "/vendor/*/*/php4/*"
-  ]
-  },
-  "minimum-stability": "beta"
+    "fix": [
+      "./vendor/bin/phpcbf ./src/*",
+      "./vendor/bin/phpcs -s ./src/*"
+    ],
+    "lint": "./vendor/bin/parallel-lint ./src/*",
+    "mess": "./vendor/bin/phpmd ./src text codesize,controversial,design,unusedcode",
+    "sanity": [
+      "make tools",
+      "@lint",
+      "./vendor/bin/phpcs -n ./src/*",
+      "@stan",
+      "@mess"
+    ],
+    "stan": "./vendor/bin/phpstan analyse --level 7 ./src",
+    "style": "./vendor/bin/phpcs ./src/*"
+  }
 }
