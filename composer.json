@@ -39,10 +39,7 @@
   "autoload": {
     "psr-4": {
       "omz13\\": "src/"
-    },
-    "files": [
-      "src/config.php"
-    ]
+    }
   },
   "minimum-stability": "beta",
   "scripts": {

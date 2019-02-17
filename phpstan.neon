@@ -9,6 +9,8 @@ parameters:
 		- '#Call to function in_array\(\) requires parameter \#[\d]+ to be true.#'
 		- '#Property [a-z0-9]+\\[a-zA-Z]+::\$[a-zA-Z]+ has no typehint specified.#'
 		- '#Cannot call method code\(\) on Kirby\\Cms\\Language|null.#'
+		- '#Used constant HTMLSITEMAP_[A-Z_]+ not found.#'
+		- '#Used constant INDENTWITH not found.#'
 	tmpDir: %rootDir%/tmp
 	level: 5
 includes:
