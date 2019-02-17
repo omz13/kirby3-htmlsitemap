@@ -20,7 +20,7 @@ use function kirby;
 use function microtime;
 use function str_repeat;
 
-define( 'HTMLSITEMAP_VERSION', '0.1.1' );
+define( 'HTMLSITEMAP_VERSION', '0.2.0' );
 define( 'HTMLSITEMAP_CONFIGURATION_PREFIX', 'omz13.xmlsitemap' );
 define( 'INDENTWITH', '    ' );
 

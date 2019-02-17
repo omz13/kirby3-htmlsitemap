@@ -2,6 +2,11 @@
 VERSION 0  ALPHA RELEASE
 ========================
 
+   Version 0.2 - alpha
+      17/02/2019 17:10  0.2.0  initial release
+         1a55bdc Fix the refactor (gah)
+         e306f0b Refactor: install by zip or submodule
+
    Version 0.1 - alpha release
       31/08/2018 18:48  0.1.1  alpha release
          f1f879a Docs: add sample
